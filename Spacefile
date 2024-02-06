@@ -1,2 +1,34 @@
 # Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
 v: 0
+micros:
+  - name: data-collector
+    src: ./src/data-collector/
+    engine: python3.9
+    run: ./main.py
+    public: true
+    presets:
+      env:
+        - name: YOUTUBE_TOKEN
+          description: Token to access youtube api
+    actions:
+      - id: "get"
+        name: "Get Video Data"
+        description: "Get youtube video data"
+        trigger: "schedule"
+        default_interval: "0 9-23/3 * * *"
+
+  - name: backend
+    src: ./src/backend/
+    engine: python3.9
+    path: api
+    public: true
+    run: uvicorn main:app
+    dev: uvicorn main:app
+
+  - name: frontend
+    src: ./src/frontend/
+    primary: true
+    engine: custom
+    public: true
+    run: "echo StartedFrontend"
+    dev: "echo StartedFrontend"
