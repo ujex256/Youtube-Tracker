@@ -5,7 +5,6 @@ micros:
     src: ./src/data-collector/
     engine: python3.9
     run: ./main.py
-    public: true
     presets:
       env:
         - name: YOUTUBE_TOKEN
@@ -23,12 +22,12 @@ micros:
     path: api
     public: true
     run: uvicorn main:app
-    dev: uvicorn main:app
+    dev: uvicorn main:app --reload
 
   - name: frontend
     src: ./src/frontend/
     primary: true
-    engine: custom
+    engine: python3.9
     public: true
-    run: "echo StartedFrontend"
-    dev: "echo StartedFrontend"
+    run: uvicorn main:app
+    dev: uvicorn main:app --reload
