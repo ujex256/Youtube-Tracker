@@ -12,7 +12,7 @@ deta = Deta(os.getenv("DETA_PROJECT_KEY", ""))
 
 
 db = deta.Base("view_count_db")
-now_date = datetime.datetime.now(tz=datetime.UTC)
+now_date = datetime.datetime.now(tz=datetime.timezone.utc)
 jst = datetime.timezone(datetime.timedelta(hours=9))
 db.put(
     {
