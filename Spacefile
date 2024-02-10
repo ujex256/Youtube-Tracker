@@ -4,7 +4,7 @@ micros:
   - name: data-collector
     src: ./src/data-collector/
     engine: python3.9
-    run: ./main.py
+    run: python ./main.py
     presets:
       env:
         - name: YOUTUBE_TOKEN
@@ -14,7 +14,7 @@ micros:
         name: "Get Video Data"
         description: "Get youtube video data"
         trigger: "schedule"
-        default_interval: "0 9-23/3 * * *"
+        default_interval: "0 */3 * * *"
 
   - name: backend
     src: ./src/backend/
