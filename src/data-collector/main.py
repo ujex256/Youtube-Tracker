@@ -16,8 +16,9 @@ now_date = datetime.datetime.now(tz=datetime.timezone.utc)
 jst = datetime.timezone(datetime.timedelta(hours=9))
 db.put(
     {
+        "date": now_date.isoformat(),
+        "jst_date": now_date.astimezone(jst).isoformat(),
         "timestamp": round(now_date.timestamp()),
-        "jst_timestamp": round(now_date.astimezone(jst).timestamp()),
         "view_count": client.get_video_by_id(video_id="AjspnMNkGu8").to_dict()["items"][0]["statistics"]["viewCount"]
     }
 )
