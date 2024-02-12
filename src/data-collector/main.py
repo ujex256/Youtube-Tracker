@@ -1,5 +1,6 @@
 import datetime
 import os
+from logging import getLogger, INFO
 
 from deta import Deta
 from dotenv import load_dotenv
@@ -8,6 +9,8 @@ from fastapi.responses import FileResponse, JSONResponse
 from pyyoutube import Api
 
 load_dotenv(override=True)
+logger = getLogger(__name__)
+logger.setLevel(INFO)
 client = Api(api_key=os.getenv("YOUTUBE_TOKEN", ""), timeout=5)
 deta = Deta()  # project_keyは環境変数から取得される
 app = FastAPI()
@@ -44,3 +47,4 @@ async def actions(request: Request):
             "view_count": video.items[0].statistics.viewCount,  # type: ignore
         }
     )
+    logger.info("Added video info to database")
