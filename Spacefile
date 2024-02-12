@@ -15,7 +15,7 @@ micros:
         name: "Get Video Data"
         description: "Get youtube video data"
         trigger: "schedule"
-        default_interval: "0 */3 * * *"
+        default_interval: "0 * * * *"  # 0 */3 * * *
 
   - name: backend
     src: ./src/backend/
