@@ -4,13 +4,14 @@ micros:
   - name: data-collector
     src: ./src/data-collector/
     engine: python3.9
-    run: python ./main.py
+    run: uvicorn main:app
+    dev: uvicorn main:app --reload
     presets:
       env:
         - name: YOUTUBE_TOKEN
           description: Token to access youtube api
     actions:
-      - id: "get"
+      - id: "get-video-data"
         name: "Get Video Data"
         description: "Get youtube video data"
         trigger: "schedule"
