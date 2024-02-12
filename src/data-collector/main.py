@@ -19,7 +19,7 @@ async def pong():
 
 
 # handler
-@app.post('/__space/v0/actions')
+@app.post("/__space/v0/actions")
 async def actions(request: Request):
     data = await request.json()
     event = data["event"]
@@ -32,13 +32,15 @@ async def actions(request: Request):
 
     video = client.get_video_by_id(video_id="AjspnMNkGu8")
     if not video.items:
-        return JSONResponse({"message": "The video is not available"})  # TODO: いい感じにする
+        return JSONResponse(
+            {"message": "The video is not available"}
+        )  # TODO: いい感じにする
 
     db.put(
         {
             "date": now_date.isoformat(),
             "jst_date": now_date.astimezone(jst).isoformat(),
             "timestamp": round(now_date.timestamp()),
-            "view_count": video.items[0].statistics.viewCount  # type: ignore
+            "view_count": video.items[0].statistics.viewCount,  # type: ignore
         }
     )
