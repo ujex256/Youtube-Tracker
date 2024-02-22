@@ -8,7 +8,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse
 from pyyoutube import Api
 
-load_dotenv(override=True)
+
+load_dotenv()
 logger = getLogger(__name__)
 logger.setLevel(INFO)
 client = Api(api_key=os.getenv("YOUTUBE_TOKEN", ""), timeout=5)
