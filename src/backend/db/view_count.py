@@ -18,7 +18,7 @@ class Count(BaseModel):
 class _ViewCounter:
     def __init__(self, record: "common.RecordDeta") -> None:
         self.base_deta = record
-        self.db = record.Base("view_count_db")
+        self.db = record.AsyncBase("view_count_db")
 
-    def add_video_data(self, data: Count):
-        self.db.put(data.model_dump_json())
+    async def add_video_data(self, data: Count):
+        await self.db.put(data.model_dump_json())
