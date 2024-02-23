@@ -1,5 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel as _BaseModel
 
 
-class YTVideoInput(BaseModel):
+class YTVideoInput(_BaseModel):
     video_id: str
