@@ -20,7 +20,7 @@ class RecordDeta(Deta):
 
     async def register_video(self, video_id, exist_ok=False):
         data = {"is_active": True, "channel_id": "", "dur": ""}
-        status = is_video_exists(video_id, self._yt_token)
+        status = await is_video_exists(video_id, self._yt_token)
         if status.status is False:
             raise ValueError("The video is not found.")
 
