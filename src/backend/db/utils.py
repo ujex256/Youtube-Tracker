@@ -1,4 +1,5 @@
 import re
+import asyncio
 
 from pydantic import BaseModel, model_validator
 from pyyoutube import Api, VideoListResponse
@@ -35,7 +36,7 @@ class VideoStatus(BaseModel):
 
 
 async def is_video_exists(id: str, api_client: Api) -> VideoStatus:
-    vi = api_client.get_video_by_id(video_id=id)
+    vi = await asyncio.to_thread(api_client.get_video_by_id, video_id=id)
     result = VideoStatus(status=True, response=vi)
     if vi.pageInfo.totalResults == 0:  # type: ignore
         result.status = False
