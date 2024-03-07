@@ -18,5 +18,5 @@ async def test():
 
 @app.post("/video/register")
 async def register(a: input_schemas.YTVideoInput):
-    record.register_video(video_id=a.video_id)
+    await record.register_video(video_id=a.video_id)
     return JSONResponse({"status": True})
