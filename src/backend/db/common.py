@@ -4,6 +4,12 @@ from deta import Deta
 from db.utils import is_video_exists
 from db.view_count import _ViewCounter
 
+from enum import Enum
+
+class VideoStatus(Enum):
+    ENABLED = {"enabled": True}
+    DISABLED = {"enabled": False}
+
 
 class RecordDeta(Deta):
     def __init__(
@@ -19,7 +25,7 @@ class RecordDeta(Deta):
         self._yt_token = Api(api_key=youtube_api_key)
 
     async def register_video(self, video_id, exist_ok=False):
-        data = {"is_active": True, "channel_id": "", "dur": ""}
+        data = {"enabled": True, "channel_id": "", "dur": ""}
         status = await is_video_exists(video_id, self._yt_token)
         if status.status is False:
             raise ValueError("The video is not found.")
@@ -29,3 +35,11 @@ class RecordDeta(Deta):
             await self.videos_db.put(data, key=video_id)
         else:
             await self.videos_db.insert(data, key=video_id)
+
+    async def get_videos(self, status: VideoStatus | None = None):
+        if status is None:
+            return await self.videos_db.fetch()
+        if not isinstance(status, VideoStatus):
+            raise ValueError("status must be a VideoStatus")
+
+        return await self.videos_db.fetch(status.value)
