@@ -11,7 +11,7 @@ from pydantic import (
 )
 
 from db import common
-from utils import jst_datetime
+from utils import jst_datetime, is_video_id
 
 
 class Count(BaseModel):
@@ -23,7 +23,7 @@ class Count(BaseModel):
 
     @field_validator("video_id")
     def _vid_validator(cls, v):
-        if re.fullmatch(r"[a-zA-Z0-9_-]{11}", v) is None:
+        if not is_video_id(v):
             raise ValueError("Invalid video id.")
         return v
 
