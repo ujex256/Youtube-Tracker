@@ -1,28 +1,40 @@
 import re
-from zoneinfo import ZoneInfo
-from datetime import datetime
+from datetime import datetime as dt
 from typing import Optional
 
-from pydantic import BaseModel, Field, validator, field_serializer
+from pydantic import (
+    BaseModel,
+    Field,
+    field_validator,
+    model_validator,
+    field_serializer,
+)
 
 from db import common
+from utils import jst_datetime
 
 
 class Count(BaseModel):
     count: int
     video_id: str
-    date: Optional[datetime] = Field(default_factory=datetime.utcnow)
-    jst_date: Optional[datetime] = Field(default=datetime.now(tz=ZoneInfo("Asia/Tokyo")))
+    date: Optional[dt] = Field(default_factory=dt.utcnow)
+    jst_date: Optional[dt] = Field(default_factory=jst_datetime)
     timestamp: Optional[int]
 
-    @validator("video_id")
-    def __post_init__(cls, v):
+    @field_validator("video_id")
+    def _vid_validator(cls, v):
         if re.fullmatch(r"[a-zA-Z0-9_-]{11}", v) is None:
             raise ValueError("Invalid video id.")
         return v
 
+    @model_validator(mode="after")
+    def _timestamp_validator(self):
+        if self.timestamp is not None:
+            return self
+        return self.date.timestamp()
+
     @field_serializer("date", "jst_date")
-    def serialize_isofmt(self, time: datetime):
+    def _serialize_isofmt(self, time: dt):
         return time.isoformat()
 
 

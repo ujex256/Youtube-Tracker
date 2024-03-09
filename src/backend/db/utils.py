@@ -1,5 +1,7 @@
 import re
 import asyncio
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from pydantic import BaseModel, model_validator
 from pyyoutube import Api, VideoListResponse
@@ -41,3 +43,7 @@ async def is_video_exists(id: str, api_client: Api) -> VideoStatus:
     if vi.pageInfo.totalResults == 0:  # type: ignore
         result.status = False
     return result
+
+
+def jst_datetime():
+    return datetime.now(tz=ZoneInfo("Asia/Tokyo"))
