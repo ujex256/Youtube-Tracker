@@ -61,5 +61,5 @@ class RecordDeta(Deta):
         if found.count == 0:
             return None
         i = found.items[0]
-        results = YTVideo(video_id=i["video_id"], status=i["enabled"])
+        results = YTVideo(video_id=i["video_id"], enabled=i["enabled"])
         return results
