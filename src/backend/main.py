@@ -7,8 +7,11 @@ from models import input_schemas
 from db import RecordDeta
 from db.exceptions import VideoAlreadyRegistered
 
+from data_collector import collector
+
 load_dotenv()
 app = FastAPI()
+app.include_router(collector)
 record = RecordDeta(youtube_api_key=getenv("YOUTUBE_TOKEN"))
 
 
