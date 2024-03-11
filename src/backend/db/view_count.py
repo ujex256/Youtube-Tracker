@@ -50,4 +50,4 @@ class _ViewCounter:
             raise exp.VideoNotRegistered(
                 f"The video \"{data.video_id}\" is not yet registered."
             )
-        await self.db.put(data.model_dump_json())
+        await self.db.put(data.model_dump())
