@@ -1,4 +1,3 @@
-import re
 from datetime import datetime as dt
 from typing import Optional
 
@@ -11,7 +10,8 @@ from pydantic import (
 )
 
 from db import common
-from utils import jst_datetime, is_video_id
+from db.utils import jst_datetime, is_video_id
+from db import exceptions as exp
 
 
 class Count(BaseModel):
@@ -45,4 +45,9 @@ class _ViewCounter:
         self.db = record.AsyncBase("view_count_db")
 
     async def add_video_data(self, data: Count):
+        video = self.base_deta.get_video(data.video_id)
+        if video is None:
+            raise exp.VideoNotRegistered(
+                f"The video \"{data.video_id}\" is not yet registered."
+            )
         await self.db.put(data.model_dump_json())
