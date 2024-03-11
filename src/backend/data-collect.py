@@ -31,15 +31,15 @@ async def actions(request: Request):
         return JSONResponse({"message": "Who are you?"}, 401)
 
     all_videos = await record.get_videos(VideoStatus.ENABLED)
-    semaphone = asyncio.Semaphore(5)
+    semaphore = asyncio.Semaphore(5)
     tasks = [add_video_stastics(i["video_id"]) for i in all_videos.items]
-    await asyncio.gather(*tasks)
-    data = Count()
-    video = client.get_video_by_id(video_id="AjspnMNkGu8")
-    if not video.items:
-        return JSONResponse(
-            {"message": "The video is not available"}
-        )  # TODO: いい感じにする
+    # await asyncio.gather(*tasks)
+    # data = Count()
+    # video = client.get_video_by_id(video_id="AjspnMNkGu8")
+    # if not video.items:
+    #     return JSONResponse(
+    #         {"message": "The video is not available"}
+    #     )  # TODO: いい感じにする
 
     # db.put(
     #     {
@@ -52,8 +52,9 @@ async def actions(request: Request):
     logger.info("Added video info to database")
 
 
-async def add_video_stastics(video_id: str):
-    video = await asyncio.to_thread(record._yt_token.get_video_by_id, video_id=video_id)
+async def add_video_stastics(video_id: str, sem: asyncio.Semaphore):
+    with await sem:
+        video = await asyncio.to_thread(record._yt_token.get_video_by_id, video_id=video_id)
     if not video.items:
         return
     count = video.items[0].statistics.viewCount
