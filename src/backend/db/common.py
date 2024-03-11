@@ -1,14 +1,23 @@
+from aiohttp.client_exceptions import ClientResponseError as _RespErr
 from pyyoutube import Api
 from deta import Deta
+from pydantic import BaseModel
 
 from db.utils import is_video_exists
 from db.view_count import _ViewCounter
+from db import exceptions as exp
 
 from enum import Enum
+
 
 class VideoStatus(Enum):
     ENABLED = {"enabled": True}
     DISABLED = {"enabled": False}
+
+
+class YTVideo(BaseModel):
+    video_id: str
+    enabled: bool
 
 
 class RecordDeta(Deta):
@@ -34,7 +43,10 @@ class RecordDeta(Deta):
         if exist_ok:
             await self.videos_db.put(data, key=video_id)
         else:
-            await self.videos_db.insert(data, key=video_id)
+            try:
+                await self.videos_db.insert(data, key=video_id)
+            except _RespErr:
+                raise exp.VideoAlreadyRegistered
 
     async def get_videos(self, status: VideoStatus | None = None):
         if status is None:
@@ -43,3 +55,11 @@ class RecordDeta(Deta):
             raise ValueError("status must be a VideoStatus")
 
         return await self.videos_db.fetch(status.value)
+
+    async def get_video(self, video_id):
+        found = await self.videos_db.fetch({"video_id": video_id})
+        if found.count == 0:
+            return None
+        i = found.items[0]
+        results = YTVideo(video_id=i["video_id"], status=i["enabled"])
+        return results

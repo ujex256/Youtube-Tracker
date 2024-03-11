@@ -5,6 +5,7 @@ from os import getenv
 
 from models import input_schemas
 from db import RecordDeta
+from db.exceptions import VideoAlreadyRegistered
 
 load_dotenv()
 app = FastAPI()
@@ -18,5 +19,10 @@ async def test():
 
 @app.post("/video/register")
 async def register(a: input_schemas.YTVideoInput):
-    await record.register_video(video_id=a.video_id)
+    try:
+        await record.register_video(video_id=a.video_id)
+    except VideoAlreadyRegistered as e:
+        return JSONResponse(
+            {"id": e.id, "msg": "The video has already registered."}, 400
+        )
     return JSONResponse({"status": True})
