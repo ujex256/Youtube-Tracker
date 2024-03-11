@@ -14,26 +14,27 @@ logger = getLogger(__name__)
 logger.setLevel(INFO)
 
 record = RecordDeta(youtube_api_key=getenv("YOUTUBE_TOKEN"))
-app = APIRouter()
+collector = APIRouter()
 
 
-@app.get("/__space/v0/actions")
+@collector.get("/__space/v0/actions")
 async def pong():
     return FileResponse("static/data-collector.html", media_type="text/html")
 
 
 # handler
-@app.post("/__space/v0/actions")
+@collector.post("/__space/v0/actions")
 async def actions(request: Request):
     data = await request.json()
     event = data["event"]
-    if event["id"] != "get-video-data":  # なんか不正されそう
+    if event["id"] != "getting":  # なんか不正されそう
         return JSONResponse({"message": "Who are you?"}, 401)
 
     all_videos = await record.get_videos(VideoStatus.ENABLED)
     semaphore = asyncio.Semaphore(5)
-    tasks = [add_video_stastics(i["video_id"]) for i in all_videos.items]
-    # await asyncio.gather(*tasks)
+    print(all_videos.items)
+    tasks = [add_video_stastics(i["key"], semaphore) for i in all_videos.items]
+    await asyncio.gather(*tasks)
     # data = Count()
     # video = client.get_video_by_id(video_id="AjspnMNkGu8")
     # if not video.items:
@@ -53,7 +54,7 @@ async def actions(request: Request):
 
 
 async def add_video_stastics(video_id: str, sem: asyncio.Semaphore):
-    with await sem:
+    async with sem:
         video = await asyncio.to_thread(record._yt_token.get_video_by_id, video_id=video_id)
     if not video.items:
         return
