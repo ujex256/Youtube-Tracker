@@ -31,7 +31,7 @@ class Count(BaseModel):
     def _timestamp_validator(self):
         if self.timestamp is not None:
             return self
-        self.timestamp = self.date.timestamp()
+        self.timestamp = int(self.date.timestamp())
         return self
 
     @field_serializer("date", "jst_date")
