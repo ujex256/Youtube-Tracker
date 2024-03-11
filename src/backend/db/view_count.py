@@ -19,7 +19,7 @@ class Count(BaseModel):
     video_id: str
     date: dt = Field(default_factory=dt.utcnow)
     jst_date: dt = Field(default_factory=jst_datetime)
-    timestamp: Optional[int]
+    timestamp: Optional[int] = None
 
     @field_validator("video_id")
     def _vid_validator(cls, v):
