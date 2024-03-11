@@ -17,8 +17,8 @@ from db import exceptions as exp
 class Count(BaseModel):
     count: int
     video_id: str
-    date: Optional[dt] = Field(default_factory=dt.utcnow)
-    jst_date: Optional[dt] = Field(default_factory=jst_datetime)
+    date: dt = Field(default_factory=dt.utcnow)
+    jst_date: dt = Field(default_factory=jst_datetime)
     timestamp: Optional[int]
 
     @field_validator("video_id")
