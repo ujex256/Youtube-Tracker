@@ -31,9 +31,9 @@ async def actions(request: Request):
         return JSONResponse({"message": "Who are you?"}, 401)
 
     all_videos = await record.get_videos(VideoStatus.ENABLED)
-    asyncio.gather(
-        []
-    )
+    semaphone = asyncio.Semaphore(5)
+    tasks = [add_video_stastics(i["video_id"]) for i in all_videos.items]
+    await asyncio.gather(*tasks)
     data = Count()
     video = client.get_video_by_id(video_id="AjspnMNkGu8")
     if not video.items:
