@@ -45,7 +45,7 @@ class _ViewCounter:
         self.db = record.AsyncBase("view_count_db")
 
     async def add_video_data(self, data: Count):
-        video = self.base_deta.get_video(data.video_id)
+        video = await self.base_deta.get_video(data.video_id)
         if video is None:
             raise exp.VideoNotRegistered(
                 f"The video \"{data.video_id}\" is not yet registered."
