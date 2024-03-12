@@ -57,9 +57,8 @@ class RecordDeta(Deta):
         return await self.videos_db.fetch(status.value)
 
     async def get_video(self, video_id):
-        found = await self.videos_db.fetch({"video_id": video_id})
-        if found.count == 0:
+        found = await self.videos_db.get(key=video_id)
+        if found is None:
             return None
-        i = found.items[0]
-        results = YTVideo(video_id=i["video_id"], enabled=i["enabled"])
+        results = YTVideo(video_id=video_id, enabled=found["enabled"])
         return results
