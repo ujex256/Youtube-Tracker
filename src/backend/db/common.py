@@ -7,6 +7,7 @@ from db.utils import is_video_exists
 from db.view_count import _ViewCounter
 from db import exceptions as exp
 
+import asyncio
 from enum import Enum
 
 
@@ -32,6 +33,17 @@ class RecordDeta(Deta):
         self.videos_db = self.AsyncBase("sugoi_videos")
         self.view_counter = _ViewCounter(self)
         self._yt_token = Api(api_key=youtube_api_key)
+
+    def __del__(self):
+        try:
+            loop = asyncio.get_event_loop()
+            close = self.videos_db.close
+            if loop.is_running():
+                loop.create_task(close())
+            else:
+                loop.run_until_complete(close())
+        except Exception:
+            pass
 
     async def register_video(self, video_id, exist_ok=False):
         data = {"enabled": True, "channel_id": "", "dur": ""}

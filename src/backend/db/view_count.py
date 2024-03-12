@@ -1,3 +1,4 @@
+import asyncio
 from datetime import datetime as dt
 from typing import Optional
 
@@ -43,6 +44,17 @@ class _ViewCounter:
     def __init__(self, record: "common.RecordDeta") -> None:
         self.base_deta = record
         self.db = record.AsyncBase("view_count_db")
+
+    def __del__(self):
+        try:
+            loop = asyncio.get_event_loop()
+            close = self.db.close
+            if loop.is_running():
+                loop.create_task(close())
+            else:
+                loop.run_until_complete(close())
+        except Exception:
+            pass
 
     async def add_video_data(self, data: Count):
         video = await self.base_deta.get_video(data.video_id)
