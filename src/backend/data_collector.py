@@ -32,24 +32,9 @@ async def actions(request: Request):
 
     all_videos = await record.get_videos(VideoStatus.ENABLED)
     semaphore = asyncio.Semaphore(5)
-    print(all_videos.items)
+
     tasks = [add_video_stastics(i["key"], semaphore) for i in all_videos.items]
     await asyncio.gather(*tasks)
-    # data = Count()
-    # video = client.get_video_by_id(video_id="AjspnMNkGu8")
-    # if not video.items:
-    #     return JSONResponse(
-    #         {"message": "The video is not available"}
-    #     )  # TODO: いい感じにする
-
-    # db.put(
-    #     {
-    #         "date": now_date.isoformat(),
-    #         "jst_date": now_date.astimezone(jst).isoformat(),
-    #         "timestamp": round(now_date.timestamp()),
-    #         "view_count": video.items[0].statistics.viewCount,  # type: ignore
-    #     }
-    # )
     logger.info("Added video info to database")
 
 
