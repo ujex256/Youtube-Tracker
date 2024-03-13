@@ -33,12 +33,12 @@ async def actions(request: Request):
     all_videos = await record.get_videos(VideoStatus.ENABLED)
     semaphore = asyncio.Semaphore(5)
 
-    tasks = [add_video_stastics(i["key"], semaphore) for i in all_videos.items]
+    tasks = [add_video_statistics(i["key"], semaphore) for i in all_videos.items]
     await asyncio.gather(*tasks)
     logger.info("Added video info to database")
 
 
-async def add_video_stastics(video_id: str, sem: asyncio.Semaphore):
+async def add_video_statistics(video_id: str, sem: asyncio.Semaphore):
     async with sem:
         video = await asyncio.to_thread(record._yt_token.get_video_by_id, video_id=video_id)
     if not video.items:
