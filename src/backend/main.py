@@ -1,13 +1,14 @@
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse
-from dotenv import load_dotenv
 from os import getenv
 
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
 from models import input_schemas
+from data_collector import collector
 from db import RecordDeta
 from db.exceptions import VideoAlreadyRegistered
 
-from data_collector import collector
 
 load_dotenv()
 app = FastAPI()

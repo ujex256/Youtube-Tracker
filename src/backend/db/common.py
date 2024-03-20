@@ -1,14 +1,14 @@
-from aiohttp.client_exceptions import ClientResponseError as _RespErr
-from pyyoutube import Api
-from deta import Deta
-from pydantic import BaseModel
-
-from db.utils import is_video_exists
-from db.view_count import _ViewCounter
-from db import exceptions as exp
-
 import asyncio
 from enum import Enum
+
+from aiohttp.client_exceptions import ClientResponseError as _RespErr
+from deta import Deta
+from pydantic import BaseModel
+from pyyoutube import Api
+
+from db import exceptions as exp
+from db.utils import is_video_exists
+from db.view_count import _ViewCounter
 
 
 class VideoStatus(Enum):

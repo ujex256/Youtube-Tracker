@@ -1,12 +1,12 @@
 import asyncio
-from logging import getLogger, INFO
+from logging import INFO, getLogger
 from os import getenv
 
 from dotenv import load_dotenv
 from fastapi import APIRouter, Request
 from fastapi.responses import FileResponse, JSONResponse
 
-from db import RecordDeta, Count, VideoStatus
+from db import Count, RecordDeta, VideoStatus
 
 
 load_dotenv()
