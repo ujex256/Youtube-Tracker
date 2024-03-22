@@ -1,1 +1,2 @@
-from db.common import RecordDeta
+from db.common import *
+from db.view_count import Count

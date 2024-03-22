@@ -1,8 +1,24 @@
-from pyyoutube import Api
-from deta import Deta
+import asyncio
+from enum import Enum
 
+from aiohttp.client_exceptions import ClientResponseError as _RespErr
+from deta import Deta
+from pydantic import BaseModel
+from pyyoutube import Api
+
+from db import exceptions as exp
 from db.utils import is_video_exists
 from db.view_count import _ViewCounter
+
+
+class VideoStatus(Enum):
+    ENABLED = {"enabled": True}
+    DISABLED = {"enabled": False}
+
+
+class YTVideo(BaseModel):
+    video_id: str
+    enabled: bool
 
 
 class RecordDeta(Deta):
@@ -18,14 +34,43 @@ class RecordDeta(Deta):
         self.view_counter = _ViewCounter(self)
         self._yt_token = Api(api_key=youtube_api_key)
 
+    def __del__(self):
+        try:
+            loop = asyncio.get_event_loop()
+            close = self.videos_db.close
+            if loop.is_running():
+                loop.create_task(close())
+            else:
+                loop.run_until_complete(close())
+        except Exception:
+            pass
+
     async def register_video(self, video_id, exist_ok=False):
-        data = {"is_active": True, "channel_id": "", "dur": ""}
+        data = {"enabled": True, "channel_id": "", "dur": ""}
         status = await is_video_exists(video_id, self._yt_token)
         if status.status is False:
-            raise ValueError("The video is not found.")
+            raise exp.VideoNotFound("Video not found")
 
         data["channel_id"] = status.response.items[0].snippet.channelId
         if exist_ok:
             await self.videos_db.put(data, key=video_id)
         else:
-            await self.videos_db.insert(data, key=video_id)
+            try:
+                await self.videos_db.insert(data, key=video_id)
+            except _RespErr:
+                raise exp.VideoAlreadyRegistered
+
+    async def get_videos(self, status: VideoStatus | None = None):
+        if status is None:
+            return await self.videos_db.fetch()
+        if not isinstance(status, VideoStatus):
+            raise ValueError("status must be a VideoStatus")
+
+        return await self.videos_db.fetch(status.value)
+
+    async def get_video(self, video_id):
+        found = await self.videos_db.get(key=video_id)
+        if found is None:
+            return None
+        results = YTVideo(video_id=video_id, enabled=found["enabled"])
+        return results
