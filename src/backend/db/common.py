@@ -49,7 +49,7 @@ class RecordDeta(Deta):
         data = {"enabled": True, "channel_id": "", "dur": ""}
         status = await is_video_exists(video_id, self._yt_token)
         if status.status is False:
-            raise ValueError("The video is not found.")
+            raise exp.VideoNotFound("Video not found")
 
         data["channel_id"] = status.response.items[0].snippet.channelId
         if exist_ok:
