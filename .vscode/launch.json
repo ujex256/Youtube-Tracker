@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python デバッガー: FastAPI",
+            "name": "Backend (FastAPI)",
             "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
@@ -14,7 +14,7 @@
                 "--reload"
             ],
             "jinja": true,
-            "cwd": "${fileDirname}"
+            "cwd": "${workspaceFolder}/src/backend"
         }
     ]
 }
