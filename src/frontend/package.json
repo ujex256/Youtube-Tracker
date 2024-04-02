@@ -22,6 +22,9 @@
     "consola": "^3.0.1"
   },
   "devDependencies": {
-    "@bootstrap-vue-next/nuxt": "^0.16.6"
+    "@bootstrap-vue-next/nuxt": "^0.16.6",
+    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "eslint": "^8.57.0"
   }
 }
