@@ -10,8 +10,18 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "bootstrap": "^5.3.3",
+    "bootstrap-vue-next": "^0.16.6",
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "zod": "^3.22.4"
+  },
+  "peerDependencies": {
+    "consola": "^3.0.1"
+  },
+  "devDependencies": {
+    "@bootstrap-vue-next/nuxt": "^0.16.6"
   }
 }
