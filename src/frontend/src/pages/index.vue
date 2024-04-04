@@ -1,7 +1,9 @@
 <template>
-  <h1>HEllo</h1>
-  <Header />
   <div>
-    <NuxtWelcome />
+    <Header />
+    <h1>HEllo</h1>
   </div>
+  <!-- <div>
+    <NuxtWelcome />
+  </div> -->
 </template>
