@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   srcDir: "./src",
   modules: [
     "@bootstrap-vue-next/nuxt",
-    "@nuxtjs/eslint-module"
+    ["@nuxtjs/eslint-module", { lintOnStart: false }]
   ],
   css: [
     "bootstrap/dist/css/bootstrap.min.css",
