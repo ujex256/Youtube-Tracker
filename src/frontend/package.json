@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "prettier --write src"
+    "lint": "eslint src",
+    "fmt": "prettier --write src"
   },
   "dependencies": {
     "@types/bootstrap": "^5.2.10",
