@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="btn">Testing</div> -->
   <header data-bs-theme="dark">
-    <BNavbar class="hd-nav shadow p-3" container="xl" sha>
+    <BNavbar class="hd-nav shadow p-3" container="xl">
       <span class="navbar-brand mb-0 h1" style="font-size: 1.4rem;">
         SNAME
       </span>
