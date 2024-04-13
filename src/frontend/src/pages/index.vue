@@ -1,3 +1,7 @@
 <template>
-  <h1>aaa</h1>
+  <div>
+    <div class="pg-info">
+      <h1>Hello, World</h1>
+    </div>
+  </div>
 </template>
