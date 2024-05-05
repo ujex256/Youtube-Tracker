@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     modules: [
         "@bootstrap-vue-next/nuxt",
         ["@nuxtjs/eslint-module", { lintOnStart: false }],
+        "nuxt-icon"
     ],
     css: ["bootstrap/dist/css/bootstrap.min.css"],
 });
