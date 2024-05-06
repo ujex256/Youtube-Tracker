@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="pg-info">
+    <div class="pg-info center">
       <BContainer>
-        <BRow align-content="center">
-          <BCol lg="6" align-self="center">
+        <BRow>
+          <BCol class="center">
             <div class="info-txt">
               <h1 class="info-catchphrase">Hello, World</h1>
               <span>Youtube, NicoNicoなど</span>
@@ -19,7 +19,7 @@
               </div>
             </div>
           </BCol>
-          <BCol>
+          <BCol class="center">
             <img
               src="https://placehold.jp/500x350.png"
               alt="すごい紹介"
@@ -34,17 +34,13 @@
 
 <style scoped>
 .pg-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 75vh;
   background-color: wheat;
 }
 .info-txt {
-  position: relative;
   word-break: keep-all;
-  max-width: 50vw;
-  padding: 25px;
+  /* padding: 25px;
+  max-width: 8vw; */
   width: fit-content;
   font-size: 1.25rem;
 }
@@ -56,7 +52,11 @@
   height: auto;
 }
 .registerbtn {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding: 0.75rem 0;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
