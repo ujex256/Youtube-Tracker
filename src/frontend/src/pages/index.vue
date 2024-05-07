@@ -42,10 +42,10 @@
   /* padding: 25px;
   max-width: 8vw; */
   width: fit-content;
-  font-size: 1.25rem;
+  font-size: clamp(1.125rem, 1.03rem + 0.48vw, 1.625rem);
 }
 .info-catchphrase {
-  font-size: 4rem;
+  font-size: clamp(3.5rem, 3.274rem + 1.13vw, 4.688rem);
 }
 .info-img {
   width: 30vw;
