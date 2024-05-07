@@ -42,7 +42,7 @@
   /* padding: 25px;
   max-width: 8vw; */
   width: fit-content;
-  font-size: clamp(1.125rem, 1.03rem + 0.48vw, 1.625rem);
+  font-size: clamp(1.125rem, 1.031rem + 0.47vw, 1.5rem);
 }
 .info-catchphrase {
   font-size: clamp(3.5rem, 3.274rem + 1.13vw, 4.688rem);
