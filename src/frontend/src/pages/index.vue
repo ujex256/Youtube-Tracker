@@ -45,11 +45,13 @@
   font-size: clamp(1.125rem, 1.031rem + 0.47vw, 1.5rem);
 }
 .info-catchphrase {
+  white-space: nowrap;
   font-size: clamp(3.5rem, 3.274rem + 1.13vw, 4.688rem);
 }
 .info-img {
-  width: 30vw;
-  height: auto;
+  margin: 10px;
+  min-width: 30vw;
+  max-width: 90%;
 }
 .registerbtn {
   padding: 0.75rem 0;
