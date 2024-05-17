@@ -12,8 +12,8 @@
               <br />
               <span>再生回数や高評価数などを分析します。</span>
               <div class="d-grid gap-2">
-                <BButton pill variant="primary" class="registerbtn m-3 px-5">
-                  <Icon name="ant-design:video-camera-add-outlined" size="1.5em" />
+                <BButton pill variant="primary" class="registerbtn mx-3 my-4 px-4">
+                  <Icon name="ant-design:video-camera-add-outlined" size="1.5rem" />
                   自分の動画を登録してみる
                 </BButton>
               </div>
@@ -34,7 +34,7 @@
 
 <style scoped>
 .pg-info {
-  height: 75vh;
+  padding: 7.5%;
   background-color: wheat;
 }
 .info-txt {
@@ -46,7 +46,7 @@
 }
 .info-catchphrase {
   white-space: nowrap;
-  font-size: clamp(3.5rem, 3.274rem + 1.13vw, 4.688rem);
+  font-size: clamp(3rem, 2.625rem + 1.88vw, 4.5rem);
 }
 .info-img {
   margin: 10px;
@@ -54,7 +54,8 @@
   max-width: 90%;
 }
 .registerbtn {
-  padding: 0.75rem 0;
+  padding: 0.8rem 0;
+  font-size: clamp(1rem, 0.938rem + 0.31vw, 1.2rem);
 }
 .center {
   display: flex;
