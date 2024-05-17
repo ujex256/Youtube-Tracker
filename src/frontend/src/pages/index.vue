@@ -29,6 +29,9 @@
         </BRow>
       </BContainer>
     </div>
+    <div class="search">
+
+    </div>
   </div>
 </template>
 
@@ -39,8 +42,6 @@
 }
 .info-txt {
   word-break: keep-all;
-  /* padding: 25px;
-  max-width: 8vw; */
   width: fit-content;
   font-size: clamp(1.125rem, 1.031rem + 0.47vw, 1.5rem);
 }
