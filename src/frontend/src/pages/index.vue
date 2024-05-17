@@ -50,7 +50,7 @@
 }
 .info-img {
   margin: 10px;
-  min-width: 30vw;
+  min-width: 32vw;
   max-width: 90%;
 }
 .registerbtn {
