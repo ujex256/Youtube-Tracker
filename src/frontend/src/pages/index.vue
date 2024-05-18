@@ -29,14 +29,6 @@
         </BRow>
       </BContainer>
     </div>
-    <div class="search center">
-      a
-      <BForm>
-        <BFormInput>
-          a
-        </BFormInput>
-      </BForm>
-    </div>
   </div>
 </template>
 
@@ -67,9 +59,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.search {
-  background-color: lightskyblue;
 }
 </style>
