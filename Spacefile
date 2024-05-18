@@ -22,7 +22,6 @@ micros:
   - name: frontend
     src: ./src/frontend/
     primary: true
-    engine: python3.9
+    engine: nuxt
     public: true
-    run: uvicorn main:app
-    dev: uvicorn main:app --reload
+    dev: bun --bun run dev
