@@ -29,6 +29,21 @@
         </BRow>
       </BContainer>
     </div>
+    <div class="search text-center">
+      <h1 class="display-3">検索してみる</h1>
+      <div class="center">
+        <BForm>
+          <BInputGroup>
+            <BDropdown text="動画サイト">
+              <BDropdownItem>Youtube</BDropdownItem>
+              <BDropdownItem>NicoNico</BDropdownItem>
+            </BDropdown>
+            <BInputGroupText>https://youtube.com</BInputGroupText>
+            <BFormInput type="url" placeholder="動画URL" />
+          </BInputGroup>
+        </BForm>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -59,5 +74,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.search {
+  padding: 7.5vmax;
+  max-width: 100%;
+  background-color: lightskyblue;
+}
+.search form {
+  width: 50%;
+  margin: 2%;
 }
 </style>
