@@ -35,8 +35,8 @@
         <BForm class="center">
           <BInputGroup class="display-input shadow">
             <BDropdown text="動画サイト">
-              <BDropdownItem>Youtube</BDropdownItem>
-              <BDropdownItem>NicoNico</BDropdownItem>
+              <BDropdownItem><Icon name="logos:youtube-icon" />Youtube</BDropdownItem>
+              <BDropdownItem><Icon name="arcticons:niconico" />NicoNico</BDropdownItem>
             </BDropdown>
             <!-- <BInputGroupText>https://youtube.com</BInputGroupText> -->
             <BFormInput type="url" placeholder="動画URL" />
