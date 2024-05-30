@@ -33,13 +33,15 @@
       <h1 class="display-3">検索してみる</h1>
       <BContainer fluid="sm">
         <BForm class="center">
-          <BInputGroup class="display-input shadow">
+          <BInputGroup class="display-input">
             <BDropdown text="動画サイト">
-              <BDropdownItem><Icon name="logos:youtube-icon" />Youtube</BDropdownItem>
-              <BDropdownItem><Icon name="arcticons:niconico" />NicoNico</BDropdownItem>
+              <DropIconItem name="logos:youtube-icon">Youtube</DropIconItem>
+              <DropIconItem name="arcticons:niconico">NicoNico</DropIconItem>
             </BDropdown>
-            <!-- <BInputGroupText>https://youtube.com</BInputGroupText> -->
             <BFormInput type="url" placeholder="動画URL" />
+            <BButton>
+              <Icon name="mingcute:search-3-line" />
+            </BButton>
           </BInputGroup>
         </BForm>
       </BContainer>
@@ -81,8 +83,16 @@
   background-color: lightskyblue;
 }
 .display-input {
-  box-shadow: 10px;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
   height: 60px;
   max-width: 800px;
+  transition: all .3s;
+}
+.display-input:focus-within {
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.35);
 }
 </style>
+
+<script>
+console.log("Yello");
+</script>
