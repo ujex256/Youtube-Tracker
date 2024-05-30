@@ -15,6 +15,18 @@
             ],
             "jinja": true,
             "cwd": "${workspaceFolder}/src/backend"
+        },
+        {
+            "name": "Frontend (Nuxt3)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}/src/frontend/src",
+            "sourceMapPathOverrides": {
+                "webpack:///src/*": "${webRoot}/*"
+            },
+            "runtimeExecutable": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+            "cwd": "${workspaceFolder}/src/frontend"
         }
     ]
 }
