@@ -33,14 +33,14 @@
       <h1 class="display-3">検索してみる</h1>
       <BContainer fluid="sm">
         <BForm class="center">
-          <BInputGroup class="display-input">
-            <BDropdown text="動画サイト">
+          <BInputGroup class="display-input rounded-pill">
+            <BDropdown text="動画サイト" toggle-class="px-3 rounded-5 rounded-end-0">
               <DropIconItem name="logos:youtube-icon">Youtube</DropIconItem>
               <DropIconItem name="arcticons:niconico">NicoNico</DropIconItem>
             </BDropdown>
             <BFormInput type="url" placeholder="動画URL" />
-            <BButton>
-              <Icon name="mingcute:search-3-line" />
+            <BButton class="rounded-5 rounded-start-0">
+              <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
             </BButton>
           </BInputGroup>
         </BForm>
@@ -79,7 +79,7 @@
 }
 
 .search {
-  padding: 5%;
+  padding: 7.5%;
   background-color: lightskyblue;
 }
 .display-input {
@@ -90,5 +90,8 @@
 }
 .display-input:focus-within {
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.35);
+}
+.display-input * {
+  font-size: 1.1rem;
 }
 </style>
