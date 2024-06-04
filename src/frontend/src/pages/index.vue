@@ -32,7 +32,7 @@
     <div class="search text-center">
       <h1 class="display-3">検索してみる</h1>
       <BContainer fluid class="p-0">
-        <BForm class="center">
+        <BForm class="d-flex align-items-center flex-column row-gap-4">
           <BInputGroup class="display-input rounded-pill">
             <BDropdown text="動画サイト" toggle-class="px-3 rounded-5 rounded-end-0">
               <DropIconItem name="logos:youtube-icon">Youtube</DropIconItem>
@@ -43,7 +43,6 @@
               <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
             </BButton>
           </BInputGroup>
-          <br />
           <BButton class="d-md-none">
               <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
           </BButton>
