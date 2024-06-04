@@ -61,6 +61,20 @@
           </BButton>
         </BForm>
       </BContainer>
+      <div class="my-5 d-flex align-items-center flex-column">
+        <img
+            src="https://placehold.jp/600x350.png"
+            alt="グラフとか"
+            class="info-img"
+        />
+        <h1>できること</h1>
+        <div>
+          <BCard>
+            <BCardTitle>見やすいグラフで直感的に見れる</BCardTitle>
+            <BCardText>{{ "こんにちは".repeat(80) }}</BCardText>
+          </BCard>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -95,7 +109,7 @@
 }
 
 .search {
-  padding: 6.5%;
+  padding: 5%;
   background-color: lightskyblue;
 }
 .display-input {
