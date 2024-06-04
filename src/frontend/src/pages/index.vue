@@ -39,11 +39,11 @@
               <DropIconItem name="arcticons:niconico">NicoNico</DropIconItem>
             </BDropdown>
             <BFormInput type="url" placeholder="動画URL" />
-            <BButton class="d-none d-md-block rounded-5 rounded-start-0">
+            <BButton class="d-none d-md-block rounded-5 rounded-start-0" variant="primary">
               <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
             </BButton>
           </BInputGroup>
-          <BButton class="d-md-none">
+          <BButton class="d-md-none col-4" variant="primary">
               <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
           </BButton>
         </BForm>
