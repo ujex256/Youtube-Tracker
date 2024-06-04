@@ -43,6 +43,10 @@
               <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
             </BButton>
           </BInputGroup>
+          <br />
+          <BButton class="d-md-none">
+              <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
+          </BButton>
         </BForm>
       </BContainer>
     </div>
@@ -84,7 +88,7 @@
 }
 .display-input {
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
-  height: 60px;
+  height: 56px;
   max-width: 800px;
   transition: all .3s;
 }
