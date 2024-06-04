@@ -12,8 +12,15 @@
               <br />
               <span>再生回数や高評価数などを分析します。</span>
               <div class="d-grid gap-2">
-                <BButton pill variant="primary" class="registerbtn mx-3 my-4 px-4">
-                  <Icon name="ant-design:video-camera-add-outlined" size="1.5rem" />
+                <BButton
+                  pill
+                  variant="primary"
+                  class="registerbtn mx-3 my-4 px-4"
+                >
+                  <Icon
+                    name="ant-design:video-camera-add-outlined"
+                    size="1.5rem"
+                  />
                   自分の動画を登録してみる
                 </BButton>
               </div>
@@ -34,17 +41,23 @@
       <BContainer fluid class="p-0">
         <BForm class="d-flex align-items-center flex-column row-gap-4">
           <BInputGroup class="display-input rounded-pill">
-            <BDropdown text="動画サイト" toggle-class="px-3 rounded-5 rounded-end-0">
+            <BDropdown
+              text="動画サイト"
+              toggle-class="px-3 rounded-5 rounded-end-0"
+            >
               <DropIconItem name="logos:youtube-icon">Youtube</DropIconItem>
               <DropIconItem name="arcticons:niconico">NicoNico</DropIconItem>
             </BDropdown>
             <BFormInput type="url" placeholder="動画URL" />
-            <BButton class="d-none d-md-block rounded-5 rounded-start-0" variant="primary">
+            <BButton
+              class="d-none d-md-block rounded-5 rounded-start-0"
+              variant="primary"
+            >
               <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
             </BButton>
           </BInputGroup>
           <BButton class="d-md-none col-4" variant="primary">
-              <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
+            <Icon name="mingcute:search-3-line" size="1.7em" class="mx-2" />
           </BButton>
         </BForm>
       </BContainer>
@@ -89,7 +102,7 @@
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
   height: 56px;
   max-width: 800px;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 .display-input:focus-within {
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.35);
