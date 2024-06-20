@@ -44,6 +44,7 @@
             <BDropdown
               text="動画サイト"
               toggle-class="px-3 rounded-5 rounded-end-0"
+              teleport-to="#teleports"
             >
               <DropIconItem name="logos:youtube-icon">Youtube</DropIconItem>
               <DropIconItem name="arcticons:niconico">NicoNico</DropIconItem>
@@ -61,7 +62,7 @@
           </BButton>
         </BForm>
       </BContainer>
-      <div class="my-5 d-flex align-items-center flex-column">
+      <div class="info-cards my-5 d-flex align-items-center flex-column">
         <img
             src="https://placehold.jp/600x350.png"
             alt="グラフとか"
@@ -123,5 +124,9 @@
 }
 .display-input * {
   font-size: 1.1rem;
+}
+
+.info-cards * {
+  max-width: 1250px;
 }
 </style>
